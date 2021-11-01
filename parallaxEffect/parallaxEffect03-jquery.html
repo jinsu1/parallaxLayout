@@ -243,6 +243,7 @@
         .paraInfo li {
             list-style: none;
         }
+
     </style>
 
 </head>
@@ -253,7 +254,7 @@
     <!-- //info -->
 
     <header id="paraHeader">
-        <h1>Parallax Effect03 - Javascript</h1>
+        <h1>Parallax Effect03 - jQuery</h1>
         <p>패럴랙스 스크롤링 효과 - 숨김 메뉴</p>
     </header>
     <!-- //header -->
@@ -372,22 +373,25 @@
         <div class="footerInfo">
             <h3>제이쿼리</h3>
             <ul>
-                <li><a href="parallaxEffect01-jquery.html">1</a></li>
-                <li><a href="parallaxEffect02-jquery.html">2</a></li>
-                <li><a href="parallaxEffect03-jquery.html">3</a></li>
-                <li><a href="parallaxEffect04-jquery.html">4</a></li>
-                <li><a href="parallaxEffect05-jquery.html">5</a></li>
-                <li><a href="parallaxEffect06-jquery.html">6</a></li>
-                <li><a href="parallaxEffect07-jquery.html">7</a></li>
-                <li><a href="parallaxEffect08-jquery.html">8</a></li>
-            </ul>
+                <ul>
+                    <li><a href="parallaxEffect01-jquery.html">1</a></li>
+                    <li><a href="parallaxEffect02-jquery.html">2</a></li>
+                    <li class="active"><a href="parallaxEffect03-jquery.html">3</a></li>
+                    <li><a href="parallaxEffect04-jquery.html">4</a></li>
+                    <li><a href="parallaxEffect05-jquery.html">5</a></li>
+                    <li><a href="parallaxEffect06-jquery.html">6</a></li>
+                    <li><a href="parallaxEffect07-jquery.html">7</a></li>
+                    <li><a href="parallaxEffect08-jquery.html">8</a></li>
+                </ul> 
+            </ul> 
         </div>
+
         <div class="footerInfo">
             <h3>자바스크립트</h3>
             <ul>
                 <li><a href="parallaxEffect01-javascript.html">1</a></li>
                 <li><a href="parallaxEffect02-javascript.html">2</a></li>
-                <li class="active"><a href="parallaxEffect03-javascript.html">3</a></li>
+                <li><a href="parallaxEffect03-javascript.html">3</a></li>
                 <li><a href="parallaxEffect04-javascript.html">4</a></li>
                 <li><a href="parallaxEffect05-javascript.html">5</a></li>
                 <li><a href="parallaxEffect06-javascript.html">6</a></li>
@@ -399,39 +403,38 @@
     <!-- //footer -->
 
     <!-- script -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
     <script>
-        document.querySelectorAll(".paraNav ul li a").forEach(element => {
-            element.addEventListener("click", (e) => {
-                e.preventDefault();
-                document.querySelector(element.getAttribute("href")).scrollIntoView({
-                    behavior: "smooth"
-                })
-            });
+        $(".paraNav ul li").click(function(e){ 
+            e.preventDefault();
+            let target = $(this);
+            let index = target.index();
+            let section = $(".content__item").eq(index);
+            let offset = section.offset().top;
+            $('html, body').animate({scrollTop:offset}, 600);
         });
-        
-        window.addEventListener("scroll", function(){
-            let scrollTop = document.documentElement.scrollTop || window.scrollY || window.pageYOffset;
+
+        $(window).scroll(function() {
+            let scrollTop = $(window).scrollTop();
 
             //메뉴
             if( scrollTop > 0) {
-                document.querySelector(".paraNav").classList.add("show");
+                $(".paraNav").addClass("show");   
             } else {
-                document.querySelector(".paraNav").classList.remove("show");
+                $(".paraNav").removeClass("show");      
             }
 
-            //버튼
-            document.querySelectorAll(".content__item").forEach((item, index) => {
-                if( scrollTop >= item.offsetTop ){
-                    document.querySelectorAll(".paraNav ul li").forEach( li => {
-                        li.classList.remove("active");
-                    });
-
-                    document.querySelector(".paraNav ul li:nth-child("+(index+1)+")").classList.add("active");
+            //버튼 
+            $(".content__item").each(function(i){
+                if( scrollTop >= $(".content__item").eq(i).offset().top - 2){
+                    $(".paraNav ul li").eq(i).addClass("active").siblings().removeClass("active");
                 }
             });
 
             //출력용
-            document.querySelector(".paraScroll span").innerText = scrollTop;
+            $(".paraScroll span").text(scrollTop);
         });
     </script>
 </body>

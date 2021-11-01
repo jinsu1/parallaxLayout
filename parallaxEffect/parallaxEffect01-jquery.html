@@ -415,14 +415,16 @@
         <div class="footerInfo">
             <h3>제이쿼리</h3>
             <ul>
-                <li class="active"><a href="parallaxEffect01-jquert.html">1</a></li>
-                <li><a href="parallaxEffect02-jquert.html">2</a></li>
-                <li><a href="parallaxEffect03-jquert.html">3</a></li>
-                <li><a href="parallaxEffect04-jquert.html">4</a></li>
-                <li><a href="parallaxEffect05-jquert.html">5</a></li>
-                <li><a href="parallaxEffect06-jquert.html">6</a></li>
-                <li><a href="parallaxEffect07-jquert.html">7</a></li>
-                <li><a href="parallaxEffect08-jquert.html">8</a></li>
+                <ul>
+                    <li class="active"><a href="parallaxEffect01-jquery.html">1</a></;>
+                    <li><a href="parallaxEffect02-jquery.html">2</a></li>
+                    <li><a href="parallaxEffect03-jquery.html">3</a></li>
+                    <li><a href="parallaxEffect04-jquery.html">4</a></li>
+                    <li><a href="parallaxEffect05-jquery.html">5</a></li>
+                    <li><a href="parallaxEffect06-jquery.html">6</a></li>
+                    <li><a href="parallaxEffect07-jquery.html">7</a></li>
+                    <li><a href="parallaxEffect08-jquery.html">8</a></li>
+                </ul> 
             </ul> 
         </div>
 
@@ -444,12 +446,13 @@
   <!-- script -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script
-  src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"
-  integrity="sha256-xH4q8N0pEzrZMaRmd7gQVcTZiFei+HfRTBPJ1OGXC0k="
-  crossorigin="anonymous"></script>
+     src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"
+     integrity="sha256-xH4q8N0pEzrZMaRmd7gQVcTZiFei+HfRTBPJ1OGXC0k="
+     crossorigin="anonymous"></script> 
+    <script>
 
-<script>
-    // 버튼 클릭해서 이동하기
+
+  // 버튼 클릭해서 이동하기
     $(".paraNav ul li").click(function(e) {
         e.preventDefault();         // #의 기본기능을 차단
         let target = $(this);       //사용자가 클릭한 버튼의 타겟이 저장
@@ -494,15 +497,21 @@
         //info 
         $(".paraScroll span").text(parseInt(scrollTop));       //브라우저의 스크롤 값을 텍스트로 표시
 
-        $(".offset1").text(parseInt($("#section1").offset().top) + "px");
-        $(".offset2").text(parseInt($("#section2").offset().top) + "px");
-        $(".offset3").text(parseInt($("#section3").offset().top) + "px");
-        $(".offset4").text(parseInt($("#section4").offset().top) + "px");
-        $(".offset5").text(parseInt($("#section5").offset().top) + "px");
-        $(".offset6").text(parseInt($("#section6").offset().top) + "px");
-        $(".offset7").text(parseInt($("#section7").offset().top) + "px");
-        $(".offset8").text(parseInt($("#section8").offset().top) + "px");
-        $(".offset9").text(parseInt($("#section9").offset().top) + "px");
+        // $(".offset1").text(parseInt($("#section1").offset().top) + "px");
+        // $(".offset2").text(parseInt($("#section2").offset().top) + "px");
+        // $(".offset3").text(parseInt($("#section3").offset().top) + "px");
+        // $(".offset4").text(parseInt($("#section4").offset().top) + "px");
+        // $(".offset5").text(parseInt($("#section5").offset().top) + "px");
+        // $(".offset6").text(parseInt($("#section6").offset().top) + "px");
+        // $(".offset7").text(parseInt($("#section7").offset().top) + "px");
+        // $(".offset8").text(parseInt($("#section8").offset().top) + "px");
+        // $(".offset9").text(parseInt($("#section9").offset().top) + "px");
+
+        //for문
+        for(let i=1; i <= 9; i++) {
+            $(".offset"+i).text(parseInt($("#section"+i).offset().top) + "px");
+
+        }
     });
 </script>
 
